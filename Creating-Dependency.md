@@ -14,31 +14,4 @@ You need to add your application specific file to this folder and zip the files 
 
 build.sh contains the script. You will need to edit it before running since the version of tensorflow is hardcoded currently
 
-```
-export TF_BINARY_URL=https://storage.googleapis.com/tensorflow/linux/cpu/tensorflow-0.9.0-cp27-none-linux_x86_64.whl
-sudo yum -y update
-sudo yum -y upgrade
-sudo yum -y group install "Development Tools"
-sudo yum -y install Cython --enablerepo=epel
-sudo yum -y install python27-devel python27-pip gcc
-
-virtualenv --always-copy ~/tensorflow_env
-source ~/tensorflow_env/bin/activate
-
-python2.7 —-version
-which python2.7
-which pip
-pip install --upgrade pip
-pip --version
-pip install --upgrade ${TF_BINARY_URL}
-deactivate
-
-cd ~/tensorflow_env/lib/python2.7/site-packages
-touch google/__init__.py
-zip -r9v ~/lambda-tensorflow-dependency-ap-southeast-2.zip . --exclude \*.pyc
-cd ~/tensorflow_env/lib64/python2.7/site-packages
-zip -r9v ~/lambda-tensorflow-dependency-ap-southeast-2.zip . --exclude \*.pyc
-cd ~
-python -m SimpleHTTPServer 8000
-
-```
+In particular, the TF_BINARY_URL property will need changing for whatever tensorflow version you want to use
